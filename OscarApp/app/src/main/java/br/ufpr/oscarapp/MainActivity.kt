@@ -33,10 +33,8 @@ class MainActivity : AppCompatActivity() {
             val senha = findViewById<TextView>(R.id.tvSenha).text.toString()
 
             if (login.isNotEmpty() && senha.isNotEmpty() /*&& logica de buscar no BD*/) {
-
                 val intent = Intent(this, TelaBoasVindas::class.java)
                 startActivity(intent)
-
             }
             else{
                 AlertDialog.Builder(this)
@@ -45,8 +43,6 @@ class MainActivity : AppCompatActivity() {
                     .setPositiveButton("OK", null) // Não precisa de listener para o botão "OK" neste caso
                     .show()
             }
-
-
         }
 
 

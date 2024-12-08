@@ -31,7 +31,7 @@ class TelaCadastro : AppCompatActivity() {
             val senha=findViewById<TextView>(R.id.tvSenha2).text.toString()
             val login=findViewById<TextView>(R.id.tvLogin2).text.toString()
             // verificadr no BD se o login já existe
-            if(login=="BuscarNoBD"){
+            if(login=="BuscarNoBD"){    //trocar a lógica para buscar no BD
                 AlertDialog.Builder(this)
                     .setTitle("Erro")
                     .setMessage("Usuário já possui conta Cadastrada")
@@ -52,7 +52,7 @@ class TelaCadastro : AppCompatActivity() {
                 } else {
                     AlertDialog.Builder(this)
                         .setTitle("Erro")
-                        .setMessage("As senhas devem ser iguais")
+                        .setMessage("Usuário não pode ser vazio e as senhas devem ser iguais")
                         .setPositiveButton(
                             "OK",
                             null
