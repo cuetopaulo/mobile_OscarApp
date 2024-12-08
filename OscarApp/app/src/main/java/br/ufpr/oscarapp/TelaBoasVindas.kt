@@ -39,10 +39,19 @@ class TelaBoasVindas : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Botão para ir para tela Sair
+        // Botão para SAIR
         findViewById<Button>(R.id.btSair).setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            android.app.AlertDialog.Builder(this) // Use android.app.AlertDialog.Builder
+                .setTitle("Confirmação")
+                .setMessage("Tem certeza que deseja sair?\nSeus votos não serão salvos nem registrados!")
+                .setPositiveButton("OK") { dialog, which ->
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                .setNegativeButton("Cancelar") { dialog, which ->
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 }
