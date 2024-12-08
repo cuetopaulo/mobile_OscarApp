@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.ufpr.oscarapp.telasDiretores.TelaDiretores
+import br.ufpr.oscarapp.telasFilmes.TelaFilmes
 
 class TelaBoasVindas : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +19,24 @@ class TelaBoasVindas : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Botão para ir para tela VOTAR FILME
+        findViewById<Button>(R.id.btVotarFilme).setOnClickListener {
+            val intent = Intent(this, TelaFilmes::class.java)
+            startActivity(intent)
+        }
+
+        // Botão para ir para tela VOTAR DIRETOR
+        findViewById<Button>(R.id.btVotarDiretor).setOnClickListener {
+            val intent = Intent(this, TelaDiretores::class.java)
+            startActivity(intent)
+        }
+
+        // Botão para ir para tela CONFIRMAR VOTO
+        findViewById<Button>(R.id.btConfirmarVoto).setOnClickListener {
+            val intent = Intent(this, TelaConfirmarVoto::class.java)
+            startActivity(intent)
         }
 
         // Botão para ir para tela Sair
