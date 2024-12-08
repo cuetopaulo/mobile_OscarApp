@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,9 +25,46 @@ class TelaConfirmarVoto : AppCompatActivity() {
 
         // Botão para SALVAR e CONFIRMAR VOTO
         findViewById<Button>(R.id.btSalvarVotoFinalizar).setOnClickListener {
-            //inserir lógica da votação e confirmação do token
-            val intent = Intent(this, TelaBoasVindas::class.java)
-            startActivity(intent)
+            val filmeEscolhido = findViewById<TextView>(R.id.tvFilmeEscolhido).text.toString()
+            val diretorEscolhido = findViewById<TextView>(R.id.tvDiretorEscolhido).text.toString()
+            val tokenString = findViewById<TextView>(R.id.tvTokenInserir).text.toString()
+
+            try {
+                val token = tokenString.toInt()
+
+                //inserir lógica da votação e confirmação do token
+                if (filmeEscolhido != "Filme não selecionado" || diretorEscolhido != "Diretor não selecionado") {
+                    if (token == 123456) {  // logica do token do BD
+                        AlertDialog.Builder(this)
+                            .setTitle("Sucesso")
+                            .setMessage("Votação realizada com sucesso!")
+                            .setPositiveButton("OK") { dialog, which ->
+                                val intent = Intent(this, TelaBoasVindas::class.java)
+                                startActivity(intent)
+                            }
+                            .show()
+                    } else {
+                        AlertDialog.Builder(this)
+                            .setTitle("Erro")
+                            .setMessage("Token inválido")
+                            .setPositiveButton("OK", null)
+                            .show()
+                    }
+                } else {
+                    AlertDialog.Builder(this)
+                        .setTitle("Erro")
+                        .setMessage("Você precisa votar no Filme e no Diretor")
+                        .setPositiveButton("OK", null)
+                        .show()
+                }
+            } catch (e: NumberFormatException) {
+                // Trate a exceção, por exemplo, exibindo uma mensagem de erro
+                AlertDialog.Builder(this)
+                    .setTitle("Erro")
+                    .setMessage("Token inválido. Digite apenas números.")
+                    .setPositiveButton("OK", null)
+                    .show()
+            }
         }
 
         // Botão para ir para tela boas vindas
