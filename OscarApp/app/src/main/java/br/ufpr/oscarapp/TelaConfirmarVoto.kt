@@ -61,7 +61,7 @@ class TelaConfirmarVoto : AppCompatActivity() {
                 // Trate a exceção, por exemplo, exibindo uma mensagem de erro
                 AlertDialog.Builder(this)
                     .setTitle("Erro")
-                    .setMessage("Token inválido. Digite apenas números.")
+                    .setMessage("Token vazio. Digite o token!")
                     .setPositiveButton("OK", null)
                     .show()
             }
