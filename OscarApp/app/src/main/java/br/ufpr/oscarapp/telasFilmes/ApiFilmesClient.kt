@@ -7,10 +7,11 @@ object ApiFilmesClient {
     private const val BASE_URL = "http://wecodecorp.com.br/"
 
     val api: FilmesApi by lazy {
-        Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(FilmesApi::class.java)
+
+        retrofit.create(FilmesApi::class.java)
     }
 }

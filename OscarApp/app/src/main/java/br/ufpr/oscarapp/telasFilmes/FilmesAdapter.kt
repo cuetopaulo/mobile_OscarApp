@@ -6,36 +6,41 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import br.ufpr.oscarapp.R
 import com.squareup.picasso.Picasso
+import br.ufpr.oscarapp.R
 
-class FilmesAdapter(private val filmes: List<Filmes>) :
-    RecyclerView.Adapter<FilmesAdapter.FilmesViewHolder>() {
+class FilmesAdapter(private var filmes: List<Filme>) : RecyclerView.Adapter<FilmesAdapter.FilmeViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmesViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
-        return FilmesViewHolder(view)
+    // ViewHolder
+    class FilmeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val fotoFilme: ImageView = itemView.findViewById(R.id.fotoFilme)
+        val nomeFilme: TextView = itemView.findViewById(R.id.nomeFilme)
+        val generoFilme: TextView = itemView.findViewById(R.id.generoFilme)
     }
 
-    override fun onBindViewHolder(holder: FilmesViewHolder, position: Int) {
+    // Atualiza os filmes no adapter
+    fun updateFilmes(filmes: List<Filme>) {
+        this.filmes = filmes
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        return FilmeViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: FilmeViewHolder, position: Int) {
         val filme = filmes[position]
         holder.nomeFilme.text = filme.nome
         holder.generoFilme.text = filme.genero
 
-        // Carregar imagem do drawable
+        // Carregar a imagem usando Picasso
         Picasso.get()
             .load(filme.foto)
-            .placeholder(R.drawable.placeholder_image)
-            .error(R.drawable.error_image)
             .into(holder.fotoFilme)
     }
 
-    override fun getItemCount(): Int = filmes.size
-
-    class FilmesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nomeFilme: TextView = view.findViewById(R.id.nomeFilme)
-        val generoFilme: TextView = view.findViewById(R.id.generoFilme)
-        val fotoFilme: ImageView = view.findViewById(R.id.fotoFilme)
+    override fun getItemCount(): Int {
+        return filmes.size
     }
 }

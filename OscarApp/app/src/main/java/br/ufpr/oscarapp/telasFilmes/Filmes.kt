@@ -1,8 +1,8 @@
 package br.ufpr.oscarapp.telasFilmes
 
-data class Filmes(
+data class Filme(
     val id: String,
     val nome: String,
     val genero: String,
-    val foto: Int // Referência ao recurso drawable
+    val foto: String
 )
