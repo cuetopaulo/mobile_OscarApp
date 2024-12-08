@@ -30,24 +30,36 @@ class TelaCadastro : AppCompatActivity() {
             val confereSenha=findViewById<TextView>(R.id.tvSenha3).text.toString()
             val senha=findViewById<TextView>(R.id.tvSenha2).text.toString()
             val login=findViewById<TextView>(R.id.tvLogin2).text.toString()
-
-            if (senha == confereSenha && senha.isNotEmpty() && confereSenha.isNotEmpty()) {
-                AlertDialog.Builder(this)
-                    .setTitle("Sucesso")
-                    .setMessage("Usuário cadastrado com sucesso")
-                    .setPositiveButton("OK") { dialog, which ->
-                        // Código a ser executado após o clique em "OK"
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    .show()
-            } else {
+            // verificadr no BD se o login já existe
+            if(login=="BuscarNoBD"){
                 AlertDialog.Builder(this)
                     .setTitle("Erro")
-                    .setMessage("As senhas devem ser iguais")
+                    .setMessage("Usuário já possui conta Cadastrada")
                     .setPositiveButton("OK", null) // Não precisa de listener para o botão "OK" neste caso
                     .show()
-                return@setOnClickListener
+            }
+            else {
+                if (login.isNotEmpty() && senha == confereSenha && senha.isNotEmpty() && confereSenha.isNotEmpty()) {
+                    AlertDialog.Builder(this)
+                        .setTitle("Sucesso")
+                        .setMessage("Usuário cadastrado com sucesso")
+                        .setPositiveButton("OK") { dialog, which ->
+                            // Código a ser executado após o clique em "OK"
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        .show()
+                } else {
+                    AlertDialog.Builder(this)
+                        .setTitle("Erro")
+                        .setMessage("As senhas devem ser iguais")
+                        .setPositiveButton(
+                            "OK",
+                            null
+                        ) // Não precisa de listener para o botão "OK" neste caso
+                        .show()
+                    return@setOnClickListener
+                }
             }
 
         }
