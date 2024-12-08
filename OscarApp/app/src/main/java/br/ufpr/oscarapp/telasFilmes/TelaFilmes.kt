@@ -1,11 +1,15 @@
 package br.ufpr.oscarapp.telasFilmes
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import br.ufpr.oscarapp.MainActivity
 import br.ufpr.oscarapp.R
+import br.ufpr.oscarapp.TelaBoasVindas
 
 class TelaFilmes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +21,12 @@ class TelaFilmes : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        
+
+        // Botão para ir para tela boas vindas
+        findViewById<Button>(R.id.btVoltar3).setOnClickListener {
+            val intent = Intent(this, TelaBoasVindas::class.java)
+            startActivity(intent)
+        }
 
     }
 }
