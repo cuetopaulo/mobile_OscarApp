@@ -32,9 +32,20 @@ class MainActivity : AppCompatActivity() {
             val login = findViewById<TextView>(R.id.tvLogin).text.toString()
             val senha = findViewById<TextView>(R.id.tvSenha).text.toString()
 
-            if (login.isNotEmpty() && senha.isNotEmpty() /*&& logica de buscar no BD*/) {
+            if (login.isNotEmpty() && senha.isNotEmpty()) {
+
+                if ( login=="123" && senha=="123") {    //alterar para login e senha do usuário
+                    // verificar no webService se o usuário já votou
+                    val intent = Intent(this, TelaJaVotou::class.java)
+                    startActivity(intent)
+
+                } else {
+
                 val intent = Intent(this, TelaBoasVindas::class.java)
                 startActivity(intent)
+
+                }
+
             }
             else{
                 AlertDialog.Builder(this)

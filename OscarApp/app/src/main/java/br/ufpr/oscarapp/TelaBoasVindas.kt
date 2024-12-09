@@ -1,8 +1,10 @@
 package br.ufpr.oscarapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,6 +13,7 @@ import br.ufpr.oscarapp.telasDiretores.TelaDiretores
 import br.ufpr.oscarapp.telasFilmes.TelaFilmes
 
 class TelaBoasVindas : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,6 +23,12 @@ class TelaBoasVindas : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // token gerado pelo webService
+        val tvToken = findViewById<TextView>(R.id.tvTokenVoto)
+        /*
+        buscar token voto gerado no WebService
+         */
 
         // Botão para ir para tela VOTAR FILME
         findViewById<Button>(R.id.btVotarFilme).setOnClickListener {

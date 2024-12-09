@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Permissão para acessar a Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,6 +15,9 @@
         android:theme="@style/Theme.OscarApp"
         tools:targetApi="31">
         <activity
+            android:name=".TelaJaVotou"
+            android:exported="false" />
+        <activity
             android:name=".TelaConfirmarVoto"
             android:exported="false" />
         <activity
@@ -24,13 +26,11 @@
         <activity
             android:name=".telasDiretores.TelaDiretores"
             android:exported="false" />
-
         <!--
         <activity
             android:name=".telasDiretores.MainActivity"
             android:exported="false" />
         -->
-
         <activity
             android:name=".TelaBoasVindas"
             android:exported="false" />
