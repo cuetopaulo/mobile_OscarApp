@@ -72,14 +72,15 @@ def login_user(request):
 
     # Se o usuário for autenticado, gera o JWT e o token de votação
     if user is not None:
-        refresh = RefreshToken.for_user(user)
-        user_profile = UserProfile.objects.get(user=user)
+        try:
+            # Assume que o modelo UserProfile contém o campo 'voting_token'
+            user_profile = UserProfile.objects.get(user=user)
+            voting_token = user_profile.voting_token  # Token de votação do usuário
 
-        return Response({
-            'access': str(refresh.access_token),  # JWT Access Token
-            'refresh': str(refresh),  # JWT Refresh Token
-            'voting_token': user_profile.voting_token,  # Token de votação do usuário
-        })
+            return Response({
+                'voting_token': voting_token,  # Retorna apenas o token de votação
+            })
+        except UserProfile.DoesNotExist:
+            return Response({"error": "User profile not found"}, status=404)
     else:
         return Response({"error": "Invalid credentials"}, status=400)
-

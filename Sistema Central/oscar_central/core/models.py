@@ -28,7 +28,7 @@ class Token(models.Model):
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    voting_token = models.IntegerField(unique=True)  # Armazenar o token de votação aqui
+    voting_token = models.IntegerField(unique=True)  # O token de votação do usuário
 
     def save(self, *args, **kwargs):
         if not self.voting_token:

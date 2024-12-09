@@ -21,12 +21,14 @@ from core import views  # Importando views de core
 #from . import views
 
 urlpatterns = [
-    path('login/', views.login_user, name='login_user'),  # URL para login
+    #path('login/', views.login_user, name='login_user'),  # URL para login
+    path('api/login/', views.login_user, name='login_user'),
     path('admin/', admin.site.urls),
     path('api/', include('core.urls')),
     path('', views.home, name='home'),  # Adicionando a rota para a raiz
     
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
 ]
 

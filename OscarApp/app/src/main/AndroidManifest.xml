@@ -26,11 +26,8 @@
         <activity
             android:name=".telasDiretores.TelaDiretores"
             android:exported="false" />
-        <!--
-        <activity
-            android:name=".telasDiretores.MainActivity"
-            android:exported="false" />
-        -->
+
+
         <activity
             android:name=".TelaBoasVindas"
             android:exported="false" />
