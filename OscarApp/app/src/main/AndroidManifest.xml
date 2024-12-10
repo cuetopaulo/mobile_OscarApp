@@ -36,6 +36,7 @@
         <activity
             android:name=".TelaCadastro"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
