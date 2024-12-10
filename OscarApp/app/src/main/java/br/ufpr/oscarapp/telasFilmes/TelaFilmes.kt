@@ -32,12 +32,12 @@ class TelaFilmes : AppCompatActivity() {
 
         // Configuração do RecyclerView
         recyclerViewFilmes = findViewById(R.id.filmesRV)
-        filmesAdapter = FilmesAdapter(emptyList()) // Inicializa com uma lista vazia
+        filmesAdapter = FilmesAdapter(emptyList(), this) // Inicializa com uma lista vazia
         recyclerViewFilmes.layoutManager = LinearLayoutManager(this)
         recyclerViewFilmes.adapter = filmesAdapter
         recyclerViewFilmes.setHasFixedSize(true)
         recyclerViewFilmes.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(this.applicationContext, DividerItemDecoration.VERTICAL)
         )
 
         // Carregar dados da API

@@ -24,14 +24,11 @@
             android:name=".telasFilmes.TelaFilmes"
             android:exported="false" />
         <activity
+            android:name=".telasFilmes.TelaDetalhesFilmes"
+            android:exported="false" />
+        <activity
             android:name=".telasDiretores.TelaDiretores"
             android:exported="false" />
-
-        <!--
-        <activity
-            android:name=".telasDiretores.MainActivity"
-            android:exported="false" />
-        -->
 
         <activity
             android:name=".TelaBoasVindas"

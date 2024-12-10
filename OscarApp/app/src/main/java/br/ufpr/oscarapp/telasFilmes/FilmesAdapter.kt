@@ -7,15 +7,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import android.content.Context
+import android.content.Intent
 import br.ufpr.oscarapp.R
 
-class FilmesAdapter(private var filmes: List<Filme>) : RecyclerView.Adapter<FilmesAdapter.FilmeViewHolder>() {
-
-    // ViewHolder
-    class FilmeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val fotoFilme: ImageView = itemView.findViewById(R.id.fotoFilme)
-        val nomeFilme: TextView = itemView.findViewById(R.id.nomeFilme)
-        val generoFilme: TextView = itemView.findViewById(R.id.generoFilme)
+class FilmesAdapter(
+    private var filmes: List<Filme>,
+    private val context: Context
+) : RecyclerView.Adapter<FilmesAdapter.FilmeViewHolder>() {
+    inner class FilmeViewHolder(
+        private val itemView: View
+    ) : RecyclerView.ViewHolder(itemView) {
+        val fotoFilme: ImageView = itemView.findViewById<ImageView>(R.id.fotoFilme)
+        val nomeFilme: TextView = itemView.findViewById<TextView>(R.id.nomeFilme)
+        val generoFilme: TextView = itemView.findViewById<TextView>(R.id.generoFilme)
     }
 
     // Atualiza os filmes no adapter
@@ -25,8 +30,8 @@ class FilmesAdapter(private var filmes: List<Filme>) : RecyclerView.Adapter<Film
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return FilmeViewHolder(itemView)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        return FilmeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FilmeViewHolder, position: Int) {
@@ -38,6 +43,15 @@ class FilmesAdapter(private var filmes: List<Filme>) : RecyclerView.Adapter<Film
         Picasso.get()
             .load(filme.foto)
             .into(holder.fotoFilme)
+
+        holder.nomeFilme.setOnClickListener {
+            val intent = Intent(context, TelaDetalhesFilmes::class.java).apply {
+                putExtra("nomeFilme", filme.nome)
+                putExtra("generoFilme", filme.genero)
+                putExtra("fotoFilme", filme.foto)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
