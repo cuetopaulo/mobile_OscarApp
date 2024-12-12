@@ -16,6 +16,7 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="#BA9E5D"
         android:text="Votar Filme"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTokenVoto" />
@@ -27,6 +28,7 @@
         android:layout_marginTop="32dp"
         android:text="num do token gerado"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +41,7 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="#ba9e5d"
         android:text="Sair"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btConfirmarVoto" />
@@ -50,6 +53,7 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="#ba9e5d"
         android:text="Confirmar Voto"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btVotarDiretor" />
@@ -61,6 +65,7 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="#ba9e5d"
         android:text="Votar Diretor"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btVotarFilme" />
