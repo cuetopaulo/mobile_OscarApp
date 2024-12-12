@@ -1,76 +1,109 @@
 package br.ufpr.oscarapp
 
-import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class TelaConfirmarVoto : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+    private var votesSubmitted = false // Tracks if the votes have been submitted
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_tela_confirmar_voto)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        // Botão para SALVAR e CONFIRMAR VOTO
-        findViewById<Button>(R.id.btSalvarVotoFinalizar).setOnClickListener {
-            val filmeEscolhido = findViewById<TextView>(R.id.tvFilmeEscolhido).text.toString()
-            val diretorEscolhido = findViewById<TextView>(R.id.tvDiretorEscolhido).text.toString()
-            val tokenString = findViewById<TextView>(R.id.tvTokenInserir).text.toString()
+        // pega votos
+        val sharedPreferences = getSharedPreferences("UserVotes", Context.MODE_PRIVATE)
+        val selectedMovie = sharedPreferences.getString("selectedMovie", "Filme não selecionado")
+        val selectedDirector = sharedPreferences.getString("selectedDirector", "Diretor não selecionado")
 
-            try {
-                val token = tokenString.toInt()
+        // seta nos textviews
+        val tvFilmeEscolhido = findViewById<TextView>(R.id.tvFilmeEscolhido)
+        val tvDiretorEscolhido = findViewById<TextView>(R.id.tvDiretorEscolhido)
+        val etToken = findViewById<EditText>(R.id.tvTokenInserir) // Token input field
+        val btnSubmit = findViewById<Button>(R.id.btSalvarVotoFinalizar)
 
-                //inserir lógica da votação e confirmação do token
-                if (filmeEscolhido != "Filme não selecionado" || diretorEscolhido != "Diretor não selecionado") {
-                    if (token == 123456) {  // logica do token do BD
-                        AlertDialog.Builder(this)
-                            .setTitle("Sucesso")
-                            .setMessage("Votação realizada com sucesso!")
-                            .setPositiveButton("OK") { dialog, which ->
-                                val intent = Intent(this, TelaBoasVindas::class.java)
-                                startActivity(intent)
-                            }
-                            .show()
-                    } else {
-                        AlertDialog.Builder(this)
-                            .setTitle("Erro")
-                            .setMessage("Token inválido")
-                            .setPositiveButton("OK", null)
-                            .show()
-                    }
-                } else {
-                    AlertDialog.Builder(this)
-                        .setTitle("Erro")
-                        .setMessage("Você precisa votar no Filme e no Diretor")
-                        .setPositiveButton("OK", null)
-                        .show()
-                }
-            } catch (e: NumberFormatException) {
-                // Trate a exceção, por exemplo, exibindo uma mensagem de erro
-                AlertDialog.Builder(this)
-                    .setTitle("Erro")
-                    .setMessage("Token vazio. Digite o token!")
-                    .setPositiveButton("OK", null)
-                    .show()
+        // mostra votos
+        tvFilmeEscolhido.text = selectedMovie
+        tvDiretorEscolhido.text = selectedDirector
+
+        // enviar votos
+        btnSubmit.setOnClickListener {
+            if (votesSubmitted) {
+                Toast.makeText(this, "Você já enviou seus votos.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            val tokenString = etToken.text.toString()
+            if (tokenString.isEmpty()) {
+                Toast.makeText(this, "Por favor, insira o token.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val token = tokenString.toIntOrNull()
+            if (token == null) {
+                Toast.makeText(this, "Token inválido. Insira um número válido.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (selectedMovie == "Filme não selecionado" || selectedDirector == "Diretor não selecionado") {
+                Toast.makeText(this, "Você precisa votar no Filme e no Diretor.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            mandaVotoServer(token, selectedMovie!!, selectedDirector!!)
         }
 
-        // Botão para ir para tela boas vindas
         findViewById<Button>(R.id.btVoltar5).setOnClickListener {
             val intent = Intent(this, TelaBoasVindas::class.java)
             startActivity(intent)
+        }
+    }
+
+
+
+    private fun mandaVotoServer(token: Int, movieName: String, directorName: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val response = RetrofitClient.instance.submitVote(VoteRequest(token, movieName, directorName))
+                if (response.isSuccessful) {
+                    AlertDialog.Builder(this@TelaConfirmarVoto)
+                        .setTitle("Sucesso")
+                        .setMessage("Votação realizada com sucesso!")
+                        .setPositiveButton("OK") { _, _ ->
+                            votesSubmitted = true
+
+                            // Disable further modifications
+                            val sharedPreferences = getSharedPreferences("UserVotes", Context.MODE_PRIVATE)
+                            sharedPreferences.edit().putBoolean("votesSubmitted", true).apply()
+
+                            // Redirect or close activity
+                            val intent = Intent(this@TelaConfirmarVoto, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                        .show()
+                } else {
+                    AlertDialog.Builder(this@TelaConfirmarVoto)
+                        .setTitle("Erro")
+                        .setMessage("Erro ao registrar voto: ${response.errorBody()?.string()}")
+                        .setPositiveButton("OK", null)
+                        .show()
+                }
+            } catch (e: Exception) {
+                AlertDialog.Builder(this@TelaConfirmarVoto)
+                    .setTitle("Erro")
+                    .setMessage("Erro: ${e.message}")
+                    .setPositiveButton("OK", null)
+                    .show()
+            }
         }
     }
 }

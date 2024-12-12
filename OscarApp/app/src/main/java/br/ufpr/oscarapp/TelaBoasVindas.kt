@@ -1,6 +1,7 @@
 package br.ufpr.oscarapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -26,9 +27,14 @@ class TelaBoasVindas : AppCompatActivity() {
 
         // token gerado pelo webService
         val tvToken = findViewById<TextView>(R.id.tvTokenVoto)
-        /*
-        buscar token voto gerado no WebService
-         */
+        val sharedPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getInt("token", -1)
+
+        if (token != -1) {
+            tvToken.text = "Token: $token"
+        } else {
+            tvToken.text = "Token não encontrado"
+        }
 
         // Botão para ir para tela VOTAR FILME
         findViewById<Button>(R.id.btVotarFilme).setOnClickListener {
@@ -54,8 +60,7 @@ class TelaBoasVindas : AppCompatActivity() {
                 .setTitle("Confirmação")
                 .setMessage("Tem certeza que deseja sair?\nSeus votos não serão salvos nem registrados!")
                 .setPositiveButton("OK") { dialog, which ->
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    finishAffinity()
                 }
                 .setNegativeButton("Cancelar") { dialog, which ->
                     dialog.dismiss()

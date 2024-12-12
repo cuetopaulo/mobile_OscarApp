@@ -1,5 +1,6 @@
 package br.ufpr.oscarapp.telasDiretores
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -33,12 +34,18 @@ class TelaDiretores : AppCompatActivity() {
             val selectedId = radioGroup.checkedRadioButtonId
             if (selectedId != -1) {
                 val selectedRadioButton = findViewById<RadioButton>(selectedId)
-                val selectedDiretor = selectedRadioButton.text
+                val selectedDiretor = selectedRadioButton.text.toString()
+
+
+                saveVoteLocally(selectedDiretor)
+
                 Toast.makeText(
                     this,
-                    "Voto confirmado para: $selectedDiretor",
+                    "Voto salvo temporariamente para: $selectedDiretor",
                     Toast.LENGTH_SHORT
                 ).show()
+
+                finish() // Optionally close the activity after confirming
             } else {
                 Toast.makeText(this, "Por favor, selecione um diretor.", Toast.LENGTH_SHORT).show()
             }
@@ -90,4 +97,11 @@ class TelaDiretores : AppCompatActivity() {
             ).show()
         }
     }
+    private fun saveVoteLocally(directorName: String) {
+        val sharedPreferences = getSharedPreferences("UserVotes", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("selectedDirector", directorName) // Store the selected director
+        editor.apply()
+    }
 }
+

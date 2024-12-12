@@ -4,6 +4,7 @@
 
     <!-- Permissão para acessar a Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +30,8 @@
         <activity
             android:name=".telasDiretores.TelaDiretores"
             android:exported="false" />
-
+        <activity android:name=".TelaJaVotou"
+            android:exported="false" />
         <activity
             android:name=".TelaBoasVindas"
             android:exported="false" />

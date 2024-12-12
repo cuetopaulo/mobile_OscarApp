@@ -1,9 +1,11 @@
 package br.ufpr.oscarapp.telasFilmes
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -49,5 +51,18 @@ class TelaDetalhesFilmes : AppCompatActivity() {
         } else {
             filmeFotoImageView.setImageResource(R.drawable.placeholder_image) // Imagem padrão
         }
+
+        findViewById<Button>(R.id.btnVotar).setOnClickListener {
+            salvaLocalmente(nomeFilme ?: "")
+            Toast.makeText(this, "Voto salvo temporáriamente para o filme: $nomeFilme", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+    fun salvaLocalmente(movieName: String) {
+        val sharedPreferences = getSharedPreferences("UserVotes", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("selectedMovie", movieName) // Store the selected movie
+        editor.apply()
     }
 }
+
