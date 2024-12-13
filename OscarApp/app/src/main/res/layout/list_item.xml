@@ -22,7 +22,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Título"
-        android:textColor="#e4d4a0"
+        android:textColor="#000000"
         android:textColorLink="#ac9a54"
         android:textSize="18sp"
         android:textStyle="bold"

@@ -48,7 +48,7 @@ class TelaIP : AppCompatActivity() {
             if (isIpValid(ipInformado)) {
                 IpServidor = ipInformado
                 Toast.makeText(this, "IP salvo com sucesso: $IpServidor", Toast.LENGTH_SHORT).show()
-                finish() 
+                finish()
             } else {
                 Toast.makeText(this, "IP inválido. Por favor, insira um IP válido.", Toast.LENGTH_SHORT).show()
             }

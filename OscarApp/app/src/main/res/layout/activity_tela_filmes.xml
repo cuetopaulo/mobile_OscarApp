@@ -43,6 +43,7 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="#ba9e5d"
         android:text="Voltar"
+        android:textColor="#ffffff"
         android:textColorLink="#d1bc76"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

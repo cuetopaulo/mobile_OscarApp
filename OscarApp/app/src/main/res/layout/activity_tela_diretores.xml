@@ -41,6 +41,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="#ba9e5d"
         android:text="Voltar"
+        android:textColor="#ffffff"
         android:textColorLink="#d1bc76"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +55,7 @@
         android:layout_marginBottom="112dp"
         android:backgroundTint="#ba9e5d"
         android:text="Confirmar voto"
+        android:textColor="#ffffff"
         android:textColorLink="#d1bc76"
         app:layout_constraintBottom_toTopOf="@+id/btVoltar4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,5 +69,6 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:theme="@style/RadioButtonStyle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
