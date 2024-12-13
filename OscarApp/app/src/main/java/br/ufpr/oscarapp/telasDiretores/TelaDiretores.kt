@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -19,6 +20,7 @@ import kotlinx.coroutines.withContext
 class TelaDiretores : AppCompatActivity() {
 
     private lateinit var radioGroup: RadioGroup
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,9 @@ class TelaDiretores : AppCompatActivity() {
         setContentView(R.layout.activity_tela_diretores)
 
         radioGroup = findViewById(R.id.radioGroupDiretores)
+        progressBar = findViewById(R.id.progressBar)
 
+        progressBar.visibility = View.VISIBLE
         fetchDiretores()
 
         // Botão para confirmar voto
@@ -45,7 +49,7 @@ class TelaDiretores : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
 
-                finish() // Optionally close the activity after confirming
+                finish()
             } else {
                 Toast.makeText(this, "Por favor, selecione um diretor.", Toast.LENGTH_SHORT).show()
             }
@@ -64,10 +68,12 @@ class TelaDiretores : AppCompatActivity() {
                 val diretores = ApiDiretoresClient.api.getDiretores()
 
                 withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
                     populateRadioGroup(diretores)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
+                    progressBar.visibility = View.GONE
                     Toast.makeText(
                         this@TelaDiretores,
                         "Erro ao carregar diretores: ${e.message}",
@@ -83,6 +89,8 @@ class TelaDiretores : AppCompatActivity() {
             val radioButton = RadioButton(this).apply {
                 text = diretor.nome
                 id = View.generateViewId()
+                textSize = 18f
+                setPadding(16, 16, 16, 16)
             }
             radioGroup.addView(radioButton)
         }

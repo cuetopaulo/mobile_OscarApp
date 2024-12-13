@@ -35,17 +35,19 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-<ProgressBar
+    <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="300dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="16dp"
+        android:indeterminate="true"
         android:progressTint="#ba9e5d"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/btVoltar3"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
     <ImageView
         android:id="@+id/imageView3"

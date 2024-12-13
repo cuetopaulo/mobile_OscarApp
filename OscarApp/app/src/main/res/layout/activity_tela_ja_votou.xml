@@ -22,33 +22,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvFilmeVotado" />
 
     <TextView
-        android:id="@+id/tvTokenUsado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:text="tokenWebService"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorLink="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:text="Token utilizado"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDiretorVotado" />
-
-    <TextView
         android:id="@+id/tvFilmeVotado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,16 +52,15 @@
         android:id="@+id/tvVotoDiaHora"
         android:layout_width="287dp"
         android:layout_height="63dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="52dp"
         android:text="Seu voto já foi registrado às HH:MM em DD/MM/AAAA"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorLink="#d1bc76"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTokenUsado" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDiretorVotado" />
 
     <ImageView
         android:id="@+id/imageView3"

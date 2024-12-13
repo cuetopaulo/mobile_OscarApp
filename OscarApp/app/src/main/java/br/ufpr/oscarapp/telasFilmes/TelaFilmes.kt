@@ -3,7 +3,9 @@ package br.ufpr.oscarapp.telasFilmes
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,11 +16,13 @@ import br.ufpr.oscarapp.TelaBoasVindas
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.delay
 
 class TelaFilmes : AppCompatActivity() {
 
     private lateinit var recyclerViewFilmes: RecyclerView
     private lateinit var filmesAdapter: FilmesAdapter
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,7 @@ class TelaFilmes : AppCompatActivity() {
 
         // Configuração do RecyclerView
         recyclerViewFilmes = findViewById(R.id.filmesRV)
+        progressBar = findViewById(R.id.progressBar)
         filmesAdapter = FilmesAdapter(emptyList(), this) // Inicializa com uma lista vazia
         recyclerViewFilmes.layoutManager = LinearLayoutManager(this)
         recyclerViewFilmes.adapter = filmesAdapter
@@ -47,6 +52,9 @@ class TelaFilmes : AppCompatActivity() {
     private fun fetchFilmes() {
         lifecycleScope.launch {
             try {
+                progressBar.visibility = View.VISIBLE
+                recyclerViewFilmes.visibility = View.GONE
+                delay(2000)
                 val filmes = withContext(Dispatchers.IO) {
                     ApiFilmesClient.api.getFilmes() // Chamada à API
                 }
@@ -56,7 +64,11 @@ class TelaFilmes : AppCompatActivity() {
                 e.printStackTrace()
                 Log.e("TelaFilmes", "Erro ao carregar filmes", e)
                 // Aqui você pode exibir uma mensagem de erro ao usuário
+            } finally {
+                progressBar.visibility = View.GONE
+                recyclerViewFilmes.visibility = View.VISIBLE
             }
         }
     }
+
 }
