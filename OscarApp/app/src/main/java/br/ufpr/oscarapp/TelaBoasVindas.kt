@@ -60,6 +60,11 @@ class TelaBoasVindas : AppCompatActivity() {
                 .setTitle("Confirmação")
                 .setMessage("Tem certeza que deseja sair?\nSeus votos não serão salvos nem registrados!")
                 .setPositiveButton("OK") { dialog, which ->
+                    val userVotesPreferences = getSharedPreferences("UserVotes", Context.MODE_PRIVATE)
+                    val votesEditor = userVotesPreferences.edit()
+                    votesEditor.remove("selectedMovie") // Remove the selected movie
+                    votesEditor.remove("selectedDirector") // Remove the selected director
+                    votesEditor.apply()
                     finishAffinity()
                 }
                 .setNegativeButton("Cancelar") { dialog, which ->
