@@ -8,32 +8,17 @@
     android:background="#f0f0f0"
     tools:context=".telasFilmes.TelaFilmes">
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OSCAR APP"
-        android:textColor="@color/black"
-        android:textColorLink="#d1bc76"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filmesRV"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="356dp"
+        android:layout_height="400dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="128dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.709"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
         tools:listitem="@layout/list_item" />
 
     <Button
@@ -61,4 +46,26 @@
         app:layout_constraintBottom_toTopOf="@+id/btVoltar3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oscar" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="280dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/oscar_titulo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
