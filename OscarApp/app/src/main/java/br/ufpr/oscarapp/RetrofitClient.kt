@@ -1,13 +1,18 @@
 import br.ufpr.oscarapp.PostApi
+import br.ufpr.oscarapp.TelaIP
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.100.101:5000/" // Replace with your server's IP address
+
+    // Função para obter o IP do servidor
+    private fun getBaseUrl(): String {
+        return "http://${TelaIP.IpServidor}:5000/"
+    }
 
     val instance: PostApi by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(getBaseUrl())  // Usando o IP informado
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(PostApi::class.java)

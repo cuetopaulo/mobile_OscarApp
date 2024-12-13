@@ -36,7 +36,7 @@
             android:name=".TelaBoasVindas"
             android:exported="false" />
         <activity
-            android:name=".TelaCadastro"
+            android:name=".TelaIP"
             android:exported="false" />
 
         <activity

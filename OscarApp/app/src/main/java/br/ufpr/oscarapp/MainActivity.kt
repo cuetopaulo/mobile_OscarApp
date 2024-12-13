@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Botão para ir para tela de cadastro
-        findViewById<Button>(R.id.btCadastrar).setOnClickListener {
-            val intent = Intent(this, TelaCadastro::class.java)
+        findViewById<Button>(R.id.btIP).setOnClickListener {
+            val intent = Intent(this, TelaIP::class.java)
             startActivity(intent)
         }
 
