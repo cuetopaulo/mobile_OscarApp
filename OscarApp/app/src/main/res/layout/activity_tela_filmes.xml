@@ -5,14 +5,16 @@
     android:id="@+id/Filmes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".telasFilmes.TelaFilmes"
-    android:background="#FFFFFF">
+    android:background="#f0f0f0"
+    tools:context=".telasFilmes.TelaFilmes">
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="OSCAR APP"
+        android:textColor="@color/black"
+        android:textColorLink="#d1bc76"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +29,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,9 +41,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="#ba9e5d"
         android:text="Voltar"
+        android:textColorLink="#d1bc76"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="16dp"
+        android:progressTint="#ba9e5d"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/btVoltar3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

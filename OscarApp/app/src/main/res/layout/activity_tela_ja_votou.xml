@@ -5,44 +5,88 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f0f0f0"
     tools:context=".TelaJaVotou">
 
     <TextView
         android:id="@+id/tvDiretorVotado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="156dp"
         android:text="Diretor votado"
+        android:textColor="#ac9a54"
+        android:textColorLink="#d1bc76"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView18"
-        app:layout_constraintStart_toStartOf="@+id/tvFilmeVotado" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/tvFilmeVotado" />
+
+    <TextView
+        android:id="@+id/tvTokenUsado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="tokenWebService"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorLink="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="Token utilizado"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiretorVotado" />
 
     <TextView
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="58dp"
         android:layout_marginTop="37dp"
-        android:layout_marginEnd="27dp"
         android:text="Diretor"
-        app:layout_constraintEnd_toStartOf="@+id/tvDiretorVotado"
+        android:textColor="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <TextView
         android:id="@+id/tvFilmeVotado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="168dp"
         android:text="Filme votado"
+        android:textColor="#ac9a54"
+        android:textColorLink="#d1bc76"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
-        app:layout_constraintStart_toEndOf="@+id/textView19" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <Button
         android:id="@+id/btSair6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="38dp"
+        android:backgroundTint="#ba9e5d"
         android:text="Sair"
+        android:textColorLink="#d1bc76"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvVotoDiaHora" />
 
@@ -53,6 +97,8 @@
         android:layout_marginStart="58dp"
         android:layout_marginTop="150dp"
         android:text="Filme"
+        android:textColorHighlight="@color/black"
+        android:textColorLink="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,22 +108,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:text="OSCAR APP"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvVotoDiaHora"
-        android:layout_width="0dp"
+        android:layout_width="287dp"
         android:layout_height="63dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="308dp"
+        android:layout_marginTop="24dp"
         android:text="Seu voto já foi registrado às HH:MM em DD/MM/AAAA"
         android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorLink="#d1bc76"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTokenUsado" />
 </androidx.constraintlayout.widget.ConstraintLayout>

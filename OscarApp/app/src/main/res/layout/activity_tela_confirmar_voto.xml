@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f0f0f0"
     tools:context=".TelaConfirmarVoto">
 
     <TextView
@@ -13,6 +14,8 @@
         android:layout_height="wrap_content"
         android:text="OSCAR APP"
         android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textColorLink="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="Voltar"
+        android:backgroundTint="#ba9e5d"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:text="Salvar Voto"
+        android:backgroundTint="#ba9e5d"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
